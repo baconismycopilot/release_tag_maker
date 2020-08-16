@@ -111,10 +111,7 @@ class ReleaseTagMaker:
         """
 
         new_version = self.version + 1 if self.hotfix is None else self.version
-        self.new_release_tag: str = f"{self.prefix}." \
-                                    f"{self.month}." \
-                                    f"{self.day}." \
-                                    f"{self.year}v{new_version}"
+        self.new_release_tag: str = f"{self.prefix}.{self.month}.{self.day}.{self.year}v{new_version}"
 
         return self.new_release_tag
 
