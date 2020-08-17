@@ -7,7 +7,7 @@ import attr
 class ReleaseTagMaker:
     """
     Provide methods to manipulate release tags.
-    If a no schedule is provided then 30 days is assumed.
+    If schedule is not provided then 30 days is assumed.
 
     ex: ReleaseTagMaker('release.07.30.20v3[.hf]')
     """
