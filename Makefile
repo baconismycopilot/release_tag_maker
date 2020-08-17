@@ -12,14 +12,6 @@ for line in sys.stdin:
 endef
 export PRINT_HELP_PYSCRIPT
 
-check_defined = \
-	$(strip $(foreach 1,$1, \
-		$(call __check_defined,$1,$(strip $(value 2)))))
-
-__check_defined = \
-	$(if $(value $1),, \
-		$(error Undefined $1$(if $2, ($2))$(if $(value @), required by target `$@`)))
-
 clean: clean-build clean-pyc clean-test
 
 clean-build: ## Delete build artifacts
