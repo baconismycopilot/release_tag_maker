@@ -50,7 +50,7 @@ class ReleaseTagMaker:
         except IndexError:
             return None
 
-    def bump_version(self):
+    def bump_version(self) -> str:
         """
         Increment the version and return a new release tag.
         Hotfix release tags won't get bumped.
@@ -73,6 +73,7 @@ class ReleaseTagMaker:
         if self.hotfix is None:
             previous_release: datetime = datetime.strptime(self.release_date, '%m.%d.%y')
             next_release: datetime = previous_release + timedelta(days=self.schedule)
+
             return f"{self.prefix}.{next_release.strftime('%m.%d.%y')}v1"
 
         return '.'.join(self.release_list)
