@@ -1,4 +1,4 @@
-.PHONE: help clean clean-build clean-pyc clean-lint
+.PHONE: help clean clean-pyc clean-lint
 .DEFAULT_GOAL := help
 
 define PRINT_HELP_PYSCRIPT
@@ -12,27 +12,14 @@ for line in sys.stdin:
 endef
 export PRINT_HELP_PYSCRIPT
 
-clean: clean-build clean-pyc clean-test
-
-clean-build: ## Delete build artifacts
-	rm -fr build/
-	rm -fr dist/
-	rm -fr .eggs/
-	find . -name '*.egg-info' -exec rm -fr {} +
-	find . -name '*.egg' -exec rm -f {} +
+clean: clean-pyc clean-test
 
 clean-pyc: ## Delete pyc files
 	find . -name '*.py[co]' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
 	find . -name '__pycache__' -exec rm -fr {} +
 
-clean-test: ## Delete test artifacts
-	rm -fr .tox/
-	rm -f .coverage
-	rm -fr htmlcov/
-	find . -type d -name '.pytest_cache' -exec rm -fr {} +
-
-lint: ## Run flake8 and black
+lint: ## Lint with flake8
 	flake8
 
 help:
