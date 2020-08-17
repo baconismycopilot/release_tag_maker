@@ -15,7 +15,7 @@ Given a release tag and a release schedule ReleaseTagMaker attempts to generate 
 ```
 
 ### New tag
-Incrememt the given release tag by an optionally provided `schedule` parameter. If `schedule` is not defined then 30 days is assumed.
+Increment the given release tag by an optionally provided `schedule` parameter. If `schedule` is not defined then 30 days is assumed.
 
 #### New tag without specifying a schedule
 
