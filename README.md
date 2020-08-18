@@ -22,7 +22,7 @@ Increment the given release tag by an optionally provided `schedule` parameter. 
 ```
 >>> from rtm import ReleaseTagMaker
 >>> rt = ReleaseTagMaker('release.07.30.20v3)
->>> rt.new_tag()
+>>> rt.new_release_tag()
 'release.08.29.20v1'
 ```
 
@@ -31,7 +31,7 @@ Increment the given release tag by an optionally provided `schedule` parameter. 
 ```
 >>> from rtm import ReleaseTagMaker
 >>> rt = ReleaseTagMaker('release.07.30.20v3, schedule=60)
->>> rt.new_tag()
+>>> rt.new_release_tag()
 'release.09.28.20v1'
 ```
 
