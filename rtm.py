@@ -25,15 +25,15 @@ class ReleaseTagMaker:
 
     @property
     def month(self):
-        return self.release_list[1]
+        return int(self.release_list[1])
 
     @property
     def day(self):
-        return self.release_list[2]
+        return int(self.release_list[2])
 
     @property
     def year(self):
-        return self.release_list[3].split('v')[0]
+        return int(self.release_list[3].split('v')[0])
 
     @property
     def release_date(self):
@@ -63,7 +63,7 @@ class ReleaseTagMaker:
 
         return new_release_tag
 
-    def new_tag(self) -> str:
+    def new_release_tag(self) -> str:
         """
         Generate a new release tag based on the schedule.
 
@@ -73,7 +73,24 @@ class ReleaseTagMaker:
         if self.hotfix is None:
             previous_release: datetime = datetime.strptime(self.release_date, '%m.%d.%y')
             next_release: datetime = previous_release + timedelta(days=self.schedule)
+            release_date = self.__release_date_maker(previous_release, next_release)
 
-            return f"{self.prefix}.{next_release.strftime('%m.%d.%y')}v1"
+            return f"{self.prefix}.{release_date.strftime('%m.%d.%y')}v1"
 
         return '.'.join(self.release_list)
+
+    @staticmethod
+    def __release_date_maker(start_date, end_date):
+        """
+        Return a release date that excludes Saturday and Sunday
+        so that we get a new release date during the week.
+        """
+
+        weekend: tuple = (6, 7)
+        days: list = []
+        while start_date <= end_date:
+            if start_date.isoweekday() not in weekend:
+                days.append(start_date)
+            start_date += timedelta(days=1)
+
+        return days[-1]
